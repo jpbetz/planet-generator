@@ -11,18 +11,18 @@ on the model relatively low.
 
 Screenshots
 -----------
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet2.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/greenplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/iceplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/iceplanet2.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/marbleplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/orangeplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/purpleplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/redplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/whiteplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/yellowplanet.png">
-<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/yellowplanet2.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet2.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/greenplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/iceplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/iceplanet2.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/marbleplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/orangeplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/purpleplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/redplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/whiteplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/yellowplanet.png">
+<img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/yellowplanet2.png">
 
 Requirements
 ------------
