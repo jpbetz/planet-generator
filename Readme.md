@@ -11,8 +11,8 @@ on the model relatively low.
 
 Screenshots
 -----------
-<img width="200" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/screenshot1.png">
-<img width="200" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/screenshot2.png">
+<img width="200" height="300" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/screenshot1.png">
+<img width="200" height="300" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/screenshot2.png">
 
 <img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet.png">
 <img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet2.png">
