@@ -11,6 +11,9 @@ on the model relatively low.
 
 Screenshots
 -----------
+<img width="200" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/screenshot1.png">
+<img width="200" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/screenshot2.png">
+
 <img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet.png">
 <img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet2.png">
 <img width="160" height="160" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/greenplanet.png">
@@ -48,12 +51,12 @@ What is generated?
 
 TODO
 ----
-[ ] Generate next planet(s) in background to minimize wait
-[ ] Progressively generate higher resolution textures in background (after next planets have been generated)
-[ ] Zoom out to solar system scale,  draw orbit lines
-[ ] Atmosphere generation
-[ ] Physics based Star and Planet Mass, orbit, light and temperature values
-[ ] Add support for moons (both as primary planet and as planet primary orbits around)
-[ ] Level of detail renderer (LOD), allowing for memory efficient zoom from deep space to human scale on planet surface with high resolution throughout.
-[ ] Biome generation
-[ ] Surface feature generation:  Plants, Concave terrain features (arches, caves, overhung cliffs),  erosion, tectonics
+* [ ] Generate next planet(s) in background to minimize wait
+* [ ] Progressively generate higher resolution textures in background (after next planets have been generated)
+* [ ] Zoom out to solar system scale,  draw orbit lines
+* [ ] Atmosphere generation
+* [ ] Physics based Star and Planet Mass, orbit, light and temperature values
+* [ ] Add support for moons (both as primary planet and as planet primary orbits around)
+* [ ] Level of detail renderer (LOD), allowing for memory efficient zoom from deep space to human scale on planet surface with high resolution throughout.
+* [ ] Biome generation
+* [ ] Surface feature generation:  Plants, Concave terrain features (arches, caves, overhung cliffs),  erosion, tectonics
