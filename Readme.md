@@ -11,13 +11,13 @@ on the model relatively low.
 
 Screenshots
 -----------
-<img width="600" src="https://github.com/jpbetz/planet-generator/Assets/Screenshots/blueplanet.png">
-<img width="600" src="https://github.com/jpbetz/planet-generator/Assets/Screenshots/blueplanet2.png">
-<img width="600" src="https://github.com/jpbetz/planet-generator/Assets/Screenshots/greenplanet.png">
-<img width="600" src="https://github.com/jpbetz/planet-generator/Assets/Screenshots/iceplanet.png">
-<img width="600" src="https://github.com/jpbetz/planet-generator/Assets/Screenshots/iceplanet2.png">
-<img width="600" src="https://github.com/jpbetz/planet-generator/Assets/Screenshots/marbleplanet.png">
-<img width="600" src="https://github.com/jpbetz/planet-generator/Assets/Screenshots/oranceplanet.png">
+<img width="80" src="https://github.com/jpbetz/planet-generator/tree/master/Assets/Screenshots/blueplanet.png">
+<img width="80" src="https://github.com/jpbetz/planet-generator/tree/master/Assets/Screenshots/blueplanet2.png">
+<img width="80" src="https://github.com/jpbetz/planet-generator/tree/master/Assets/Screenshots/greenplanet.png">
+<img width="80" src="https://github.com/jpbetz/planet-generator/tree/master/Assets/Screenshots/iceplanet.png">
+<img width="80" src="https://github.com/jpbetz/planet-generator/tree/master/Assets/Screenshots/iceplanet2.png">
+<img width="80" src="https://github.com/jpbetz/planet-generator/tree/master/Assets/Screenshots/marbleplanet.png">
+<img width="80" src="https://github.com/jpbetz/planet-generator/tree/master/Assets/Screenshots/oranceplanet.png">
 
 
 Requirements
