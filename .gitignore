@@ -5,7 +5,8 @@ Temp/
 Obj/
 UnityGenerated/
 Library/
-ProceeduralWorldOSX.app/
+planet-generator-osx.app/
+ProceeduralWorldiOS/
  
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
