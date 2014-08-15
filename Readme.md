@@ -1,18 +1,28 @@
 Procedural Planet Generator
 ===========================
 
-A random planet generator.  Planetary terrain is generated and rendered onto 
+A random planet generator.  Planetary terrain is generated and rendered onto
 3D planet models that can be viewed from space at any angle.
 
-3D perlin noise is used to produce the seamless planetary terrain.  A sphere from the 3D 
-noise is  mapped onto 2D textures and then wrapped back onto a 3d sphere model of the planet 
+3D perlin noise is used to produce the seamless planetary terrain.  A sphere from the 3D
+noise is  mapped onto 2D textures and then wrapped back onto a 3d sphere model of the planet
 for rendering.  This allows for high resolution terrain while still keeping the vertex count
 on the model relatively low.
 
 Screenshots
 -----------
-<img width="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet.png">
-<img width="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet2.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/blueplanet2.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/greenplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/iceplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/iceplanet2.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/marbleplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/orangeplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/purpleplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/redplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/whiteplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/yellowplanet.png">
+<img width="80" height="80" src="https://raw.githubusercontent.com/jpbetz/planet-generator/master/Assets/Screenshots/yellowplanet2.png">
 
 Requirements
 ------------
@@ -47,5 +57,3 @@ TODO
 [ ] Level of detail renderer (LOD), allowing for memory efficient zoom from deep space to human scale on planet surface with high resolution throughout.
 [ ] Biome generation
 [ ] Surface feature generation:  Plants, Concave terrain features (arches, caves, overhung cliffs),  erosion, tectonics
-
-
