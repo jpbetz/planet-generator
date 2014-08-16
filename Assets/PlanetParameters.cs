@@ -72,14 +72,12 @@ public class PlanetParameters {
 		
 		gradient.gradientPoints = new Gradient.GradientPoint[] { p1, p2, p3, p4 };
 
-		//waterColor = new Color32(45, 60, 120, 80);
-		waterColor = new Color32((byte)Random.Range(40, 50),  (byte)Random.Range(30, 90), (byte)Random.Range(90, 150), (byte)80);
-
-		landIceColor = new Color32((byte)Random.Range(230, 240),  (byte)Random.Range(230, 240), (byte)Random.Range(240, 255), (byte)30);
-
+		waterColor    = new Color32((byte)Random.Range(40, 50),    (byte)Random.Range(30, 90),   (byte)Random.Range(90, 150), (byte)80);
+		landIceColor  = new Color32((byte)Random.Range(230, 240),  (byte)Random.Range(230, 240), (byte)Random.Range(240, 255), (byte)30);
 		waterIceColor = new Color32((byte)Random.Range(230, 245),  (byte)Random.Range(240, 255), (byte)Random.Range(230, 245), (byte)240);
 
-		starLight = new Color32((byte)(Random.Range(135, 195) - 50*icyness),
+		starLight = new Color32(
+			        (byte)(Random.Range(135, 195) - 50*icyness),
 		            (byte)(Random.Range(164, 124) - 40*icyness),
 		            (byte)(Random.Range(200, 255) - 2*icyness),
 		            (byte)255);
