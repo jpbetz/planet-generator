@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Slap together some syllables to generate some sci-fi sounding planet names
+ */
 public class PlanetNameGenerator : MonoBehaviour {
-
+	
 	static string[] titles = { 
-		"Old", "New", "Itoa", "Eta", "Proxima", 
+		"New", "Proxima", 
 		"Psi", "Alpha", "Beta", "Delta", "Gamma", 
 		"Epsilon", "Sigma" };
+
 	static string[] ordinals = { "I", "II", "III", "IV", "V", "Prime" };
 
 	static string[] first = {
@@ -16,14 +20,14 @@ public class PlanetNameGenerator : MonoBehaviour {
 		"Tar", "Vord", "Sol", "Avan", "Os",
 		"Erm", "Avit", "Ber", "Uaf", "Att", 
 		"Val", "Avit", "Gil", "Nord", "Sing",
-		"Nik", "Delt", "Az", "Rek", "Ant", 
+		"Riv", "Delt", "Az", "Rek", "Ant", 
 		"Mag", "Cat", "Lat", "Ekur", "Lan",
 		"Oc", "Bak", "Om", "Carac", "Shon",
 		"Phob", "Blerr", "Harmon", "Vent", "Max",
 		"Lum", "Dor", "Lad", "Fid", "End",
 		"God", "Gav", "Gald", "Hal", "Had",
 		"Kev", "Cham", "Lor", "Mar", "Op",
-		"Qat", "Rav", "Ral", "Rel", "Riv"};
+		"Qat", "Rav", "Ral", "Rel"};
 
 	static string[] second = {
 		"ion", "zar", "ina", "erius", "ana",
@@ -33,10 +37,6 @@ public class PlanetNameGenerator : MonoBehaviour {
 		"lingen", "ara", "da", "iri", "asta",
 		"icron", "icore", "ian", "eer", "etor",
 		"eon", "cus", "ra", "ron"};
-
-	/*static string[] fullnames = {
-		"Gauss", "Newton", "Tesla", "Curie", "Darwin", "Hawking", "Higgs"
-	};*/
 
 	public static string GenerateName() {
 

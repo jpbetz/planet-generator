@@ -6,10 +6,6 @@ using System.Collections;
 
 public class MoveCamera : MonoBehaviour 
 {
-	//
-	// VARIABLES
-	//
-	
 	public float turnSpeed = 4.0f;		// Speed of camera turning when mouse moves in along an axis
 	public float zoomSpeed = 4.0f;		// Speed of the camera going back and forth
 	
@@ -19,10 +15,6 @@ public class MoveCamera : MonoBehaviour
 	private Vector3 origin = new Vector3(0,0,0);
 
 	public float pinchZoomSpeed = 0.1f; 
-
-	//
-	// UPDATE
-	//
 	
 	void Update () 
 	{
@@ -37,7 +29,6 @@ public class MoveCamera : MonoBehaviour
 		// Get the middle mouse button
 		if(Input.GetMouseButtonDown(2))
 		{
-			Debug.Log ("Mouse zoom");
 			// Get mouse origin
 			mouseOrigin = Input.mousePosition;
 			isZooming = true;
@@ -91,7 +82,6 @@ public class MoveCamera : MonoBehaviour
 			// Otherwise change the field of view based on the change in distance between the touches.
 			float fieldOfViewChange = deltaMagnitudeDiff * pinchZoomSpeed;
 
-			Debug.Log ("field of view change: " + fieldOfViewChange);
 			camera.fieldOfView += Mathf.Clamp (fieldOfViewChange, -1f, 1f);
 			
 			// Clamp the field of view to make sure it's between our allowed range

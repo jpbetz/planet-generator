@@ -12,157 +12,106 @@ public class Planet : MonoBehaviour {
 
 	float rotationSpeed = 2.5f;
 
+	public void GeneratePlanet (PlanetParameters planetParams) {
+		InitMesh();
+		GenerateTextures(planetParams);
+		ApplyPlanetSizeAndElevationToMesh(planetParams);
+	}
+
 	void InitMesh () {
 		mesh = GetComponent<MeshFilter>().mesh;
-		
-		materialsBySide = new Dictionary<CubeSide, Material>();
+		materialsBySide = LookupMatrials();
+		textureWidth = textureHeight = (int)Camera.main.pixelWidth/2; // aim for textures that can fill 1/2 of the screen width
+	}
+	
+	Dictionary<CubeSide, Material> LookupMatrials() {
+		Dictionary<CubeSide, Material> materials = new Dictionary<CubeSide, Material>();
 		
 		// TODO:  is there a better way to programatically access materials?  This is pretty lame.
 		foreach(Material material in renderer.materials) {
 			if(material.name.StartsWith("BottomMaterial__bottomImage")) {
-				materialsBySide.Add (CubeSide.Bottom, material);
+				materials.Add (CubeSide.Bottom, material);
 			} else if(material.name.StartsWith("TopMaterial__topImage")) {
-				materialsBySide.Add (CubeSide.Top, material);
+				materials.Add (CubeSide.Top, material);
 			} else if(material.name.StartsWith("LeftMaterial__leftImage")) {
-				materialsBySide.Add (CubeSide.Left, material);
+				materials.Add (CubeSide.Left, material);
 			} else if(material.name.StartsWith("RightMaterial__rightImage")) {
-				materialsBySide.Add (CubeSide.Right, material);
+				materials.Add (CubeSide.Right, material);
 			} else if(material.name.StartsWith("FrontMaterial__frontImage")) {
-				materialsBySide.Add (CubeSide.Front, material);
+				materials.Add (CubeSide.Front, material);
 			} else if(material.name.StartsWith("BackMaterial__backImage")) {
-				materialsBySide.Add (CubeSide.Back, material);
+				materials.Add (CubeSide.Back, material);
+			}
+		}
+		return materials;
+	}
+
+	void GenerateTextures(PlanetParameters planetParams) {
+		foreach(KeyValuePair<CubeSide, Material> entry in materialsBySide) {
+			GenerateTextures(entry.Key, entry.Value, planetParams);
+		}
+	}
+
+	void GenerateTextures(CubeSide side, Material material, PlanetParameters planetParams) {
+		Texture2D diffuseMap = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false); // alpha is specular
+		diffuseMap.wrapMode = TextureWrapMode.Clamp; // prevent renderer from wrapping textures,  which can cause hairline seams to appear at edges of textures
+		Color[] pix = new Color[textureWidth * textureHeight];
+		material.mainTexture = diffuseMap;
+		
+		for (int y = 0; y < diffuseMap.height; y++) {
+			for (int x = 0; x < diffuseMap.width; x++) {
+				pix[y*textureWidth + x] = GenerateTextureAtPoint(x, y, side, diffuseMap, planetParams);
 			}
 		}
 
-		if(Application.platform == RuntimePlatform.OSXPlayer || Application.platform == RuntimePlatform.OSXEditor) {
-			textureWidth = textureHeight = 300;
-		} else {
-			textureWidth = textureHeight = 128;
+		diffuseMap.SetPixels(pix);
+		diffuseMap.Apply();
+	}
+
+	Color GenerateTextureAtPoint(int x, int y, CubeSide side, Texture2D diffuseMap, PlanetParameters planetParams) {
+		Vector3 spherePoint = FindSpherePointForTexturePoint(side, (float)x / diffuseMap.width, (float)y / diffuseMap.height);
+		spherePoint.Normalize(); 
+		float noise = CalcNoiseAtSpherePoint(spherePoint, planetParams);
+
+		float distFromEquator = Mathf.Pow(Mathf.Abs(spherePoint.y), 1.5f);
+		
+		if(noise <= planetParams.seaLevel) { // water
+			return AdjustColorForLongatitude(planetParams.waterColor, planetParams.waterIceColor, distFromEquator, planetParams);
+		} else { // land
+			float elevation = noise-planetParams.seaLevel;
+			float gradientx = elevation*planetParams.gradientMultiplier;
+			Color32 gradientColor = planetParams.gradient.ColorAtX(Mathf.Clamp(gradientx, 0f, 1f), Mathf.Clamp (elevation, 0f, 1f));
+			return AdjustColorForLongatitude(gradientColor, planetParams.landIceColor, distFromEquator, planetParams);
 		}
 	}
 	
-	public void GeneratePlanet (PlanetParameters planetParams) {
-		InitMesh();
+	Color32 AdjustColorForLongatitude(Color color, Color iceColor, float distFromEquator, PlanetParameters planetParams) {
+		Color32 polarCapsColor = Color.Lerp (color, iceColor, Mathf.Clamp(planetParams.icyness, 0f, 1f));
+		Color32 equatorColor = Color.Lerp (color, iceColor, Mathf.Clamp(planetParams.icyness-1f, 0f, 1f));
+		return Color32.Lerp(equatorColor, polarCapsColor, Mathf.Clamp(distFromEquator, 0f, 1f));
+	}
 
-		foreach(KeyValuePair<CubeSide, Material> entry in materialsBySide) {
-			InitFace (entry.Key, entry.Value, planetParams);
-		}
-
+	
+	void ApplyPlanetSizeAndElevationToMesh(PlanetParameters planetParams) {
 		// apply planet size and elevation
 		Vector3[] vertices = mesh.vertices;
 		for (int i = 0; i < vertices.Length; i++) {
 			Vector3 vertex = vertices[i];
 			vertex.Normalize();
 			float noiseAtVertex = CalcNoiseAtSpherePoint(vertex, planetParams);
-
+			
 			float scaleMultiplier = planetParams.planetSize;
 			if(noiseAtVertex > planetParams.seaLevel) {
 				scaleMultiplier += (noiseAtVertex-planetParams.seaLevel)*planetParams.terrainHeight;
 			}
 			vertex = Vector3.Scale(vertex, new Vector3(scaleMultiplier, scaleMultiplier, scaleMultiplier));
-
+			
 			vertices[i] = vertex;
 		}
 		mesh.vertices = vertices;
 		mesh.RecalculateBounds();
 	}
 
-	void InitFace(CubeSide side, Material material, PlanetParameters planetParams) {
-		Texture2D diffuseMap = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false); // alpha is specular
-		diffuseMap.wrapMode = TextureWrapMode.Clamp; // prevent renderer from wrapping textures,  which can cause hairline seams to appear at edges of textures
-
-		//float[,] noiseGrid = new float[textureWidth, textureHeight];
-		Color[] pix = new Color[textureWidth * textureHeight];
-
-		material.mainTexture = diffuseMap;
-		
-		for (int y = 0; y < diffuseMap.height; y++) {
-			for (int x = 0; x < diffuseMap.width; x++) {
-				Vector3 spherePoint = FindSpherePointForTexturePoint(side, (float)x / diffuseMap.width, (float)y / diffuseMap.height);
-				spherePoint.Normalize(); 
-				float noise = CalcNoiseAtSpherePoint(spherePoint, planetParams);
-
-				//noiseGrid[x,y] = noise;
-
-				Color color;
-
-
-				float distFromEquator = Mathf.Pow(Mathf.Abs(spherePoint.y), 1.5f);
-
-				if(noise <= planetParams.seaLevel) { // water
-					color = AdjustColorForLongatitude(planetParams.waterColor, planetParams.waterIceColor, distFromEquator, planetParams);
-				} else { // land
-					float elevation = noise-planetParams.seaLevel;
-					float gradientx = elevation*planetParams.gradientMultiplier;
-					Color32 gradientColor = planetParams.gradient.ColorAtX(Mathf.Clamp(gradientx, 0f, 1f), Mathf.Clamp (elevation, 0f, 1f));
-					color = AdjustColorForLongatitude(gradientColor, planetParams.landIceColor, distFromEquator, planetParams);
-				}
-				pix[y*textureWidth + x] = color;
-			}
-		}
-
-		diffuseMap.SetPixels(pix);
-		diffuseMap.Apply();
-
-		// calculate normals based on elevation
-		/*Texture2D normalMap = new Texture2D(textureWidth, textureHeight, TextureFormat.ARGB32, false);
-		Color[] normals = new Color[textureWidth * textureHeight];
-		material.SetTexture("_BumpMap", normalMap);
-
-		for (int y = 0; y < diffuseMap.height; y++) {
-			for (int x = 0; x < diffuseMap.width; x++) {
-				float noise = noiseGrid[x,y];
-				Color normal;
-				if(noise <= planetParams.seaLevel) { // water
-					normal = planetParams.WATER_NORMAL;
-				} else {
-					normal = calculateNormalAtPoint(x, y, noiseGrid);
-				}
-				normals[y*textureWidth + x] = normal;
-			}
-		}
-		
-
-		
-		normalMap.SetPixels(normals);
-		normalMap.Apply();*/
-	}
-
-	// TODO:  should construct normals in a shader
-	Color calculateNormalAtPoint(int x, int y, float[,] noiseGrid) {
-		float centerNoise = noiseGrid[x, y];
-
-		// left ramp:
-		float leftRightAngle;
-		if(x > 0 && x < textureWidth-1) {
-			float left = noiseGrid[x-1, y];
-			float right = noiseGrid[x+1, y];
-			leftRightAngle = right - left;
-        }
-		else {
-			leftRightAngle = 0;
-		}
-
-		float bottomTopAngle;
-		if(y > 0 && y < textureHeight-1) {
-			float top = noiseGrid[x, y-1];
-			float bottom = noiseGrid[x, y+1];
-			bottomTopAngle = top - bottom;
-		}
-		else {
-			bottomTopAngle = 0;
-		}
-
-		// for normals,  red is for y-axis,  above 0.5 indicates rise from bottom to top
-		// green is x-axis,  above 0.5 indicates raise from left to right
-		return new Color(0.5f + leftRightAngle, 0.5f + bottomTopAngle, 0.5f + centerNoise/2f);
-	}
-
-	Color32 AdjustColorForLongatitude(Color color, Color iceColor, float distFromEquator, PlanetParameters planetParams) {
-		Color32 polarCapsColor = Color.Lerp (color, iceColor, Mathf.Clamp(planetParams.icyness, 0f, 1f));
-		Color32 equatorColor = Color.Lerp (color, iceColor, Mathf.Clamp(planetParams.icyness-1f, 0f, 1f));
-		return Color32.Lerp(equatorColor, polarCapsColor, Mathf.Clamp(distFromEquator, 0f, 1f));
-	}
 
 	enum CubeSide {
 		Top, Bottom, Left, Right, Front, Back

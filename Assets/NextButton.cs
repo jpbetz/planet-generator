@@ -2,15 +2,8 @@
 using System.Collections;
 
 public class NextButton : MonoBehaviour {
-
 	public SolarSystem solarSystem;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
 	void OnMouseDown(){
 		solarSystem.NextSystem();
 	}
@@ -20,5 +13,4 @@ public class NextButton : MonoBehaviour {
 			solarSystem.NextSystem();
 		}
 	}
-
 }
